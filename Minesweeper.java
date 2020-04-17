@@ -1,8 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.Scanner;
+
 public class Minesweeper {
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File(args[0]);
@@ -14,10 +14,10 @@ public class Minesweeper {
             numberOfFields = numberOfFields + fieldBuilder(fin, output);
         }
     }
+
+
     private static int fieldBuilder(Scanner fin,PrintStream output) {
         String[] unfilteredRowColumns = fin.nextLine().trim().split(" ");
-
-        System.out.println(Arrays.toString(unfilteredRowColumns));
         int[] rowsColumns = new int[2];
         rowsColumns[0] = Integer.parseInt(unfilteredRowColumns[0]);
         rowsColumns[1] = Integer.parseInt(unfilteredRowColumns[1]);
@@ -45,7 +45,6 @@ public class Minesweeper {
         for(int row = 0; row < rowsColumns[0]; row++) {
             for (int column = 0; column < rowsColumns[1]; column++) {
                 hints(hintField,row, column);
-
             }
         }
         for(int row = 0; row < rowsColumns[0]; row++) {
@@ -58,6 +57,8 @@ public class Minesweeper {
         fin.nextLine();
         return 1;
     }
+
+
     private static void hints(Object[][] hintField, int row, int column) {
         if(hintField[row][column].equals('*'))
             return;
@@ -95,6 +96,5 @@ public class Minesweeper {
                 tempHints=tempHints+1;
         }catch (Exception ignored){}
         hintField[row][column]= tempHints;
-        System.out.println(tempHints+":"+hintField[row][column]);
     }
 }
